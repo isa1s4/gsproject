@@ -242,52 +242,108 @@
                 </div>
             </div>
         </section>
-
-
-<body class="bg-gray-100">
-
-
-    <!--
-    ==================================================
-    BLOCO HTML (Simulando index.html)
-    ==================================================
-    -->
-    <div class="main-container">
-        <!-- Cabeçalho (Header) -->
-        <header class="w-full bg-primary-blue shadow-lg mb-8 rounded-b-xl">
-            <div class="max-w-7xl mx-auto p-4 flex justify-between items-center">
-                <h1 class="text-3xl font-bold text-white tracking-wider">
-                    <img src="images/logo1.png" alt="Logo FutureConnect" class="logo">
-                </h1>
-                <nav class="hidden md:block">
-                    <a href="#plataforma" class="text-white hover:text-accent-teal transition duration-200 mx-3">Plataforma</a>
-                    <a href="#quiz" class="text-white hover:text-accent-teal transition duration-200 mx-3">Quiz</a>
-                </nav>
-            </div>
-        </header>
-
-
-        <!-- Seção Principal de Profissionais (Landing Page) -->
-        <section id="plataforma" class="max-w-7xl w-full p-4">
-            <h2 class="text-4xl font-extrabold text-secondary-gray mb-6 border-b-4 border-accent-teal pb-2">
-                Conectando Talentos para o Futuro do Trabalho
+ <!--
+        ==================================================
+        SEÇÃO QUIZ (Simulando quiz.html)
+        ==================================================
+        -->
+        <section id="quiz" class="max-w-3xl w-full p-4 mb-16">
+            <h2 class="text-4xl font-extrabold text-secondary-gray mt-12 mb-6 border-b-4 border-accent-teal pb-2">
+                Quiz: Prepare-se para o Futuro!
             </h2>
-            <p class="text-lg text-gray-600 mb-8">
-                Explore a nova geração de profissionais com foco em competências, propósito e tecnologia. Clique em um perfil para visualizar todos os detalhes.
-            </p>
-           
-            <!-- Grid de Cards de Perfis -->
-            <div id="profile-grid" class="profile-grid">
-                <!-- Os cards serão injetados aqui pelo JavaScript -->
-                <div class="text-center p-8 text-gray-500">
-                    <svg class="animate-spin h-8 w-8 text-primary-blue mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Carregando Perfis...
+            <div class="quiz-container">
+                <p class="text-xl font-semibold text-gray-700 mb-4" id="quiz-question">
+                    Clique em "Iniciar Quiz" para começar o teste sobre tendências do mercado de trabalho.
+                </p>
+                <div id="quiz-options" class="space-y-3 mb-6">
+                    <!-- Opções de resposta injetadas aqui pelo JavaScript -->
                 </div>
+                <button id="quiz-start-button" class="action-button bg-primary-blue text-white font-bold py-3 px-6 rounded-lg w-full transform hover:bg-blue-800">
+                    Iniciar Quiz
+                </button>
+                <div id="quiz-feedback" class="mt-4 text-center font-bold"></div>
             </div>
         </section>
+
+
+    </div>
+
+
+    <!-- Modal de Detalhes do Profissional (Simulação Slideshow) -->
+    <div id="profile-modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content p-8" onclick="event.stopPropagation()">
+            <div class="flex justify-end">
+                <button class="text-gray-500 hover:text-red-500 text-3xl transition duration-200" onclick="document.getElementById('profile-modal').style.display='none'">&times;</button>
+            </div>
+           
+            <!-- Conteúdo Principal do Perfil no Modal -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Coluna da Esquerda: Foto e Informações Básicas -->
+                <div class="md:w-1/3 flex flex-col items-center">
+                    <img id="modal-foto" src="" alt="Foto do Profissional" class="w-36 h-36 object-cover rounded-full border-4 border-accent-teal shadow-lg mb-4">
+                    <h3 id="modal-nome" class="text-3xl font-bold text-primary-blue"></h3>
+                    <p id="modal-cargo" class="text-xl text-secondary-gray mb-4"></p>
+                    <p id="modal-pessoal" class="text-sm text-gray-600 italic text-center mb-6"></p>
+
+
+                    <!-- Botões de Ação (Não funcionais) -->
+                    <div class="space-y-3 w-full">
+                        <button class="action-button bg-accent-teal text-white font-bold py-3 px-4 rounded-lg w-full shadow-md hover:bg-teal-600">
+                            Recomendar Profissional
+                        </button>
+                        <button class="action-button bg-gray-300 text-secondary-gray font-bold py-3 px-4 rounded-lg w-full shadow-md hover:bg-gray-400">
+                            Enviar Mensagem
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- Coluna da Direita: Slideshow (Abas) de Detalhes -->
+                <div class="md:w-2/3">
+                    <div class="border-b flex justify-start space-x-4 mb-4">
+                        <button class="slideshow-tab active py-2 px-3" data-tab="experiencia" onclick="showSlideshowTab('experiencia')">Experiência</button>
+                        <button class="slideshow-tab py-2 px-3" data-tab="academico" onclick="showSlideshowTab('academico')">Acadêmico</button>
+                        <button class="slideshow-tab py-2 px-3" data-tab="comportamental" onclick="showSlideshowTab('comportamental')">Comportamental</button>
+                    </div>
+
+
+                    <!-- Conteúdo das Abas (Simulação de Slideshow) -->
+                    <div id="slideshow-content">
+                       
+                        <!-- Conteúdo 1: Experiências e Habilidades Técnicas -->
+                        <div id="tab-experiencia" class="slideshow-panel space-y-4">
+                            <h4 class="text-xl font-semibold text-gray-700 border-b pb-2">Experiências e Habilidades Técnicas</h4>
+                            <ul id="modal-experiencia" class="list-disc list-inside text-gray-600 ml-4 space-y-1"></ul>
+                           
+                            <h4 class="text-xl font-semibold text-gray-700 border-b pb-2 pt-4">Skills Técnicas (Principais)</h4>
+                            <div id="modal-skills-tecnicas" class="flex flex-wrap gap-2">
+                                <!-- Skills injetadas aqui -->
+                            </div>
+                        </div>
+
+
+                        <!-- Conteúdo 2: Informações Acadêmicas -->
+                        <div id="tab-academico" class="slideshow-panel hidden space-y-4">
+                            <h4 class="text-xl font-semibold text-gray-700 border-b pb-2">Formação Acadêmica</h4>
+                            <ul id="modal-academico" class="list-disc list-inside text-gray-600 ml-4 space-y-1"></ul>
+                        </div>
+
+
+                        <!-- Conteúdo 3: Soft Skills e Hobbies -->
+                        <div id="tab-comportamental" class="slideshow-panel hidden space-y-4">
+                            <h4 class="text-xl font-semibold text-gray-700 border-b pb-2">Soft Skills (Habilidades Comportamentais)</h4>
+                            <div id="modal-soft-skills" class="flex flex-wrap">
+                                <!-- Soft Skills injetadas aqui -->
+                            </div>
+                           
+                            <h4 class="text-xl font-semibold text-gray-700 border-b pb-2 pt-4">Hobbies e Interesses</h4>
+                            <ul id="modal-hobbies" class="list-disc list-inside text-gray-600 ml-4 space-y-1"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     
 </body>
