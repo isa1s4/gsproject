@@ -244,7 +244,7 @@
         </section>
  <!--
         ==================================================
-        SEÇÃO QUIZ (Simulando quiz.html)
+        SEÇÃO QUIZ 
         ==================================================
         -->
         <section id="quiz" class="max-w-3xl w-full p-4 mb-16">
@@ -345,6 +345,285 @@
         </div>
     </div>
 
-    
+
+    <!--
+    ==================================================
+    BLOCO JAVASCRIPT     ==================================================
+    -->
+    <script>
+        // Dados simulados para os profissionais (Array)
+        const PROFISSIONAIS_DATA = [
+            {
+                id: 1,
+                nome: "Sofia Mello",
+                cargo: "Especialista em IA Ética",
+                foto: "https://placehold.co/100x100/1D4ED8/FFFFFF?text=SM",
+                skills_basicas: ["Ética em IA", "Python", "Data Governance"],
+                pessoal: "Apaixonada por tecnologia e impacto social. Busco criar sistemas justos e inclusivos.",
+                academico: ["Mestrado em Ciência da Computação (USP)", "Certificação em Liderança Transformadora"],
+                experiencia: [
+                    "Pesquisadora Sênior em ESG Tech (3 anos) - Foco em Machine Learning para Sustentabilidade.",
+                    "Desenvolvedora Full-Stack (4 anos) - Especialização em frameworks JavaScript modernos.",
+                    "Mentora de Projetos de Inovação (1 ano) - Apoio a startups de impacto."
+                ],
+                soft_skills: ["Comunicação Assertiva", "Liderança Colaborativa", "Resolução de Conflitos", "Pensamento Crítico"],
+                hobbies: ["Escalada esportiva", "Leitura de ficção científica", "Voluntariado em educação"],
+            },
+            {
+                id: 2,
+                nome: "Lucas Almeida",
+                cargo: "Engenheiro de Sustentabilidade Digital",
+                foto: "https://placehold.co/100x100/14B8A6/FFFFFF?text=LA",
+                skills_basicas: ["IoT", "Green IT", "Cloud Computing", "Automação"],
+                pessoal: "Trabalho na interseção entre tecnologia de ponta e práticas sustentáveis para reduzir o impacto ambiental.",
+                academico: ["Graduação em Engenharia Ambiental (UFRJ)", "Especialização em IoT e Cidades Inteligentes"],
+                experiencia: [
+                    "Arquiteto de Soluções IoT (5 anos) - Implementação de sensores para otimização de recursos em indústrias.",
+                    "Consultor de TI Verde (2 anos) - Auditoria de consumo energético em data centers."
+                ],
+                soft_skills: ["Visão Sistêmica", "Adaptabilidade", "Proatividade", "Negociação"],
+                hobbies: ["Ciclismo", "Jardinagem orgânica", "Criação de conteúdo sobre tecnologia"],
+            },
+            {
+                id: 3,
+                nome: "Mariana Costa",
+                cargo: "Designer de Experiências Híbridas",
+                foto: "https://placehold.co/100x100/F97316/FFFFFF?text=MC",
+                skills_basicas: ["UX/UI", "Figma", "Design Thinking", "Realidade Aumentada (AR)"],
+                pessoal: "Crio interfaces intuitivas e envolventes que funcionam perfeitamente tanto no ambiente físico quanto no digital.",
+                academico: ["Bacharelado em Design Digital (PUC)", "Workshop em Metaversos e Experiências Imersivas"],
+                experiencia: [
+                    "Líder de Equipe de UX/UI (6 anos) - Responsável por produtos B2C com foco em usabilidade e acessibilidade.",
+                    "Desenvolvedora Front-end Júnior (1 ano) - Conhecimento prático em HTML, CSS e React."
+                ],
+                soft_skills: ["Empatia", "Criatividade", "Orientação a Detalhes", "Comunicação Visual"],
+                hobbies: ["Fotografia analógica", "Jogos de tabuleiro", "Cozinhar"],
+            }
+        ];
+       
+        // --- Funções de Renderização e Interação ---
+
+
+        /**
+         * Renderiza os cards de perfil na landing page.
+         */
+        function renderProfileCards() {
+            const grid = document.getElementById('profile-grid');
+            grid.innerHTML = ''; // Limpa o conteúdo de loading
+
+
+            PROFISSIONAIS_DATA.forEach((pro, index) => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.setAttribute('onclick', `showProfileDetails(${index})`);
+
+
+                // Gera o HTML interno do card
+                const skillsHtml = pro.skills_basicas.map(skill =>
+                    `<span class="bg-gray-100 text-gray-700 text-xs font-medium px-2.5 py-0.5 rounded-full">${skill}</span>`
+                ).join('');
+
+
+                card.innerHTML = `
+                    <img src="${pro.foto}" alt="Foto de ${pro.nome}" onerror="this.onerror=null;this.src='https://placehold.co/100x100/CCCCCC/333333?text=User'">
+                    <h3 class="text-xl font-semibold text-primary-blue mt-3 mb-1">${pro.nome}</h3>
+                    <p class="text-sm text-secondary-gray mb-3">${pro.cargo}</p>
+                    <div class="flex flex-wrap justify-center gap-1.5 mt-2">${skillsHtml}</div>
+                `;
+
+
+                grid.appendChild(card);
+            });
+        }
+       
+        /**
+         * Preenche e exibe o modal de detalhes do profissional (Slideshow).
+         * @param {number} index - O índice do profissional na lista PROFISSIONAIS_DATA.
+         */
+        function showProfileDetails(index) {
+            const pro = PROFISSIONAIS_DATA[index];
+            if (!pro) return;
+
+
+            // 1. Preenche as informações básicas
+            document.getElementById('modal-foto').src = pro.foto;
+            document.getElementById('modal-foto').alt = `Foto de ${pro.nome}`;
+            document.getElementById('modal-nome').textContent = pro.nome;
+            document.getElementById('modal-cargo').textContent = pro.cargo;
+            document.getElementById('modal-pessoal').textContent = pro.pessoal;
+
+
+            // 2. Preenche os detalhes do Slideshow/Abas
+           
+            // Experiência
+            document.getElementById('modal-experiencia').innerHTML = pro.experiencia.map(item => `<li>${item}</li>`).join('');
+           
+            // Skills Técnicas
+            document.getElementById('modal-skills-tecnicas').innerHTML = pro.skills_basicas.map(skill =>
+                `<span class="bg-primary-blue text-white text-sm font-medium px-3 py-1 rounded-full shadow-md">${skill}</span>`
+            ).join('');
+
+
+            // Acadêmico
+            document.getElementById('modal-academico').innerHTML = pro.academico.map(item => `<li>${item}</li>`).join('');
+
+
+            // Soft Skills (Comportamental)
+            document.getElementById('modal-soft-skills').innerHTML = pro.soft_skills.map(skill =>
+                `<span class="soft-skill-item">${skill}</span>`
+            ).join('');
+
+
+            // Hobbies (Comportamental)
+            document.getElementById('modal-hobbies').innerHTML = pro.hobbies.map(item => `<li>${item}</li>`).join('');
+
+
+            // 3. Exibe o modal e reseta para a primeira aba
+            document.getElementById('profile-modal').style.display = 'flex';
+            showSlideshowTab('experiencia');
+        }
+
+
+        /**
+         * Alterna entre as abas (slides) do modal de detalhes.
+         * @param {string} tabId - O ID da aba a ser exibida (experiencia, academico, comportamental).
+         */
+        function showSlideshowTab(tabId) {
+            // Esconde todos os painéis e remove a classe 'active' de todas as abas
+            document.querySelectorAll('.slideshow-panel').forEach(panel => panel.classList.add('hidden'));
+            document.querySelectorAll('.slideshow-tab').forEach(tab => tab.classList.remove('active'));
+
+
+            // Exibe o painel correto e ativa a aba
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.querySelector(`.slideshow-tab[data-tab="${tabId}"]`).classList.add('active');
+        }
+
+
+        /**
+         * Fecha o modal se o clique for fora do conteúdo.
+         * @param {Event} event - O evento de clique.
+         */
+        function closeModal(event) {
+            if (event.target.id === 'profile-modal') {
+                document.getElementById('profile-modal').style.display = 'none';
+            }
+        }
+
+
+        // --- Lógica do Quiz ---
+        const QUIZ_QUESTIONS = [
+            {
+                question: "Qual competência comportamental (soft skill) é considerada a mais crítica para a adaptabilidade no Futuro do Trabalho?",
+                options: ["Foco em Detalhes", "Fluência em Python", "Resolução de Problemas Complexos", "Gerenciamento de Tempo"],
+                answer: "Resolução de Problemas Complexos",
+            },
+            {
+                question: "O termo 'Green IT' refere-se primariamente a qual aspecto da tecnologia?",
+                options: ["Desenvolvimento de jogos 3D", "Redução do consumo de energia e impacto ambiental da TI", "Criação de interfaces amigáveis", "Blockchain e criptomoedas"],
+                answer: "Redução do consumo de energia e impacto ambiental da TI",
+            },
+            {
+                question: "O que significa o conceito de 'Experiências Híbridas' no contexto profissional?",
+                options: ["Mistura de diferentes linguagens de programação", "Integração do trabalho presencial com o remoto e digital", "Fusão de IA com Big Data", "Apenas o uso de VPNs"],
+                              answer: "Integração do trabalho presencial com o remoto e digital",
+            },
+            {
+                question: "Qual dessas áreas terá maior demanda com o avanço da automação?",
+                options: ["Processos totalmente repetitivos", "Trabalhos que exigem criatividade e julgamento humano", "Tarefas simples de planilha", "Etiquetagem manual"],
+                answer: "Trabalhos que exigem criatividade e julgamento humano",
+            },
+            {
+                question: "O que caracteriza profissionais 'T-shaped'?",
+                options: [
+                    "Possuem apenas habilidades técnicas",
+                    "Têm visão superficial de tudo sem se aprofundar",
+                    "Dominam profundamente uma área e conhecem outras de forma ampla",
+                    "São especialistas apenas em soft skills"
+                ],
+                answer: "Dominam profundamente uma área e conhecem outras de forma ampla",
+            }
+        ];
+
+
+        let currentQuestionIndex = 0;
+
+
+        // Inicia o quiz
+        document.getElementById("quiz-start-button").onclick = () => {
+            currentQuestionIndex = 0;
+            loadQuestion();
+        };
+
+
+        function loadQuestion() {
+            const questionObj = QUIZ_QUESTIONS[currentQuestionIndex];
+            document.getElementById("quiz-question").textContent = questionObj.question;
+
+
+            const optionsDiv = document.getElementById("quiz-options");
+            optionsDiv.innerHTML = "";
+
+
+            questionObj.options.forEach(option => {
+                const btn = document.createElement("button");
+                btn.className =
+                    "w-full bg-white border border-gray-300 rounded-lg p-3 text-left hover:bg-gray-100 transition";
+                btn.textContent = option;
+
+
+                btn.onclick = () => checkAnswer(option);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+
+        function checkAnswer(selectedOption) {
+            const questionObj = QUIZ_QUESTIONS[currentQuestionIndex];
+            const feedback = document.getElementById("quiz-feedback");
+
+
+            if (selectedOption === questionObj.answer) {
+                feedback.textContent = "✔ Resposta correta!";
+                feedback.className = "mt-4 text-center font-bold text-green-600";
+            } else {
+                feedback.textContent = `✘ Resposta incorreta! Resposta correta: ${questionObj.answer}`;
+                feedback.className = "mt-4 text-center font-bold text-red-600";
+            }
+
+
+            currentQuestionIndex++;
+
+
+            setTimeout(() => {
+                feedback.textContent = "";
+
+
+                if (currentQuestionIndex < QUIZ_QUESTIONS.length) {
+                    loadQuestion();
+                } else {
+                    endQuiz();
+                }
+            }, 1500);
+        }
+
+
+        function endQuiz() {
+            document.getElementById("quiz-question").textContent =
+                "Fim do quiz! Ótimo trabalho! 🚀";
+
+
+            document.getElementById("quiz-options").innerHTML = "";
+
+
+            document.getElementById("quiz-start-button").textContent = "Reiniciar Quiz";
+        }
+
+
+        // Renderização inicial dos cards
+        renderProfileCards();
+    </script>
 </body>
 </html>
+
+
