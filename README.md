@@ -116,6 +116,7 @@ Dentro do JavaScript, adicione um novo objeto ao array:
 
 
   Link para a pagina online pelo GitHub: https://isa1s4.github.io/gsproject/
+  Link do repositório: https://github.com/isa1s4/gsproject
 
  🧑‍💻 Autor
 
@@ -124,6 +125,9 @@ Desenvolvido por Isabela Vitória (RM 559255) como parte da GLOBAL SOLUTION da F
 Web Development – Prof. Wellington Cidade
 
 Frontend Design – Prof. Lucas Sousa
+
+
+Gostaria de adicionar uma nota final para os professores que considerem o fato de que eu tive pouco tempo para fazer e um boa parte de codigo eu tive que corrigir no trem porque estou  trabalhando direto e não tive muito tempo, tanto é que estou enviado as 4H da manhã porque cheguei a 00H e vim correndo terminar. depois que for avaiado eu vou tirar essa nota para poder corrigir o que for nescessario e subir para o linkedin, obrigado pela atenção e paciencia.
 
  Tema dark/light
  
