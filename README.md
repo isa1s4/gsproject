@@ -115,6 +115,8 @@ Dentro do JavaScript, adicione um novo objeto ao array:
  Exportar perfil em PDF
 
 
+  Link para a pagina online pelo GitHub: https://isa1s4.github.io/gsproject/
+
  🧑‍💻 Autor
 
 Desenvolvido por Isabela Vitória (RM 559255) como parte da GLOBAL SOLUTION da FIAP, integrando as disciplinas:
