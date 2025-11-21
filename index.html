@@ -27,6 +27,182 @@
         }
     </script>
 
+
+    <style>
+        /* Define a fonte Inter como padrão */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* gray-100 */
+        }
+       
+        /* Flexbox principal para o corpo da página */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            min-height: 100vh;
+        }
+
+
+        /* Estilo base para os cards */
+        .profile-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+
+        /* Animação: Transformação e Sombreamento ao passar o mouse */
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px rgba(20, 184, 166, 0.4); /* Sombra com cor de destaque */
+        }
+
+
+        /* Estilo para a imagem de perfil */
+        .profile-card img {
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #14B8A6; /* Borda de destaque */
+            transition: transform 0.3s ease;
+        }
+
+
+        .profile-card:hover img {
+            transform: scale(1.05); /* Pequena transformação na imagem no hover */
+        }
+
+
+        /* Estilo do Modal de Detalhes (Slideshow) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .modal-content {
+            background-color: white;
+            border-radius: 16px;
+            width: 95%;
+            max-width: 900px;
+            max-height: 95vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            animation: slideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Animação com 'bounce' */
+        }
+
+
+        /* Animações CSS */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+
+        /* Estilo dos botões de navegação do Slideshow (abas) */
+        .slideshow-tab {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+        }
+        .slideshow-tab.active {
+            color: #1D4ED8;
+            border-bottom-color: #1D4ED8;
+            font-weight: 700;
+        }
+       
+        /* Estilo dos botões de ação */
+        .action-button {
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .action-button:hover {
+            transform: translateY(-1px);
+        }
+        .action-button:active {
+            transform: translateY(0);
+        }
+
+
+        /* Estilo do Quiz */
+        .quiz-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-top: 3rem;
+            transition: all 0.5s ease;
+            width: 100%;
+        }
+
+
+        /* Responsividade para a grade de cards */
+        .profile-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+
+
+        @media (min-width: 640px) { /* sm */
+            .profile-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+
+        @media (min-width: 1024px) { /* lg */
+            .profile-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+       
+        /* Estilo para Soft Skills */
+        .soft-skill-item {
+            display: inline-block;
+            background-color: #FEF3C7; /* yellow-100 */
+            color: #92400E; /* yellow-800 */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+
+.logo {
+    width: 160px;
+    height: auto;
+}
+    </style>
+</head>
+
     
 </body>
 </html>
